@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LayoutController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,3 +24,7 @@ Route::post('/data-handle/form', [\App\Http\Controllers\DataHandleController::cl
 
 Route::view('/form','admin.template.form');
 Route::view('/table','admin.template.table');
+
+Route::get('/admin/layout/home',[\App\Http\Controllers\LayoutController::class, 'getLayout']);
+Route::get('/admin/layout/form',[\App\Http\Controllers\LayoutController::class, 'getForm']);
+Route::get('/admin/layout/table',[\App\Http\Controllers\LayoutController::class, 'getTable']);

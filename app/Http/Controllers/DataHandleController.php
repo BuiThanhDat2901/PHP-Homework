@@ -29,7 +29,46 @@ class DataHandleController extends Controller
     }
 
     public function processForm(Request $request){
-        $data = $request->all();
-        return view('form-success',$data);
+        $evenName = $request->get('eventName');
+        $bandName = $request->get('bandName');
+        $startDate = $request->get('startDate');
+        $endDate = $request->get('endDate');
+        $portfolio = $request->get('portfolio');
+        $ticketPrice = $request->get('ticketPrice');
+        $status = $request->get('status');
+        $text = $this->handleStatus($status);
+        return view('form-success',[
+            'evenName'=> $evenName,
+            'bandName'=> $bandName,
+            'startDate'=> $startDate,
+            'endDate'=> $endDate,
+            'portfolio'=> $portfolio,
+            'ticketPrice'=> $ticketPrice,
+            'status'=> $text,
+        ]);
+    }
+
+    public function handleStatus($status)
+    {
+        $text = "";
+        switch ($status) {
+            case 1:
+                $text = "Đang diễn ra";
+                break;
+            case 2:
+                $text = "Sắp diễn ra";
+                break;
+            case 3:
+                $text = "Đã diễn ra";
+                break;
+            case 0:
+                $text = "Tạm hoãn";
+                break;
+        }
+        return $text;
+    }
+
+    public function layout(){
+        return view('template.form');
     }
 }
