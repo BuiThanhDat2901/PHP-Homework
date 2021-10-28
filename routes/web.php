@@ -14,9 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('');
 });
-Route::get('/data-handle/{id}path', [\App\Http\Controllers\DataHandleController::class,'handlePathVariable']);
+Route::get('/data-handle/{id}/path', [\App\Http\Controllers\DataHandleController::class,'handlePathVariable']);
 Route::get('/data-handle/query-string?firstName=Hung&lastName=Dao&email=hung@gmail.com', [\App\Http\Controllers\DataHandleController::class,'handleQueryString']);
 Route::get('/data-handle/form', [\App\Http\Controllers\DataHandleController::class,'handleForm']);
 Route::post('/data-handle/form', [\App\Http\Controllers\DataHandleController::class,'processForm']);
+
+Route::view('/form','admin.template.form');
+Route::view('/table','admin.template.table');
